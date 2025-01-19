@@ -8,8 +8,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -48,70 +48,62 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@Composable
+fun ComposeCard(
+    title: String,
+    description: String,
+    backgroundColor: Color,
+    modifier: Modifier = Modifier
+){
+    Column(
 
+        modifier = modifier
+            .fillMaxSize()
+            .background(backgroundColor)
+            .padding(16.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+
+    ) {
+        Text(text = title,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(bottom = 16.dp)
+        )
+        Text(text = description,
+            textAlign = TextAlign.Justify)
+    }
+}
 
 @Composable
 fun ComposeQuadrant(q11: String, q12: String, q21: String, q22: String, q31: String, q32: String, q41: String, q42: String, modifier: Modifier = Modifier){
-    Column(modifier = modifier) {
-        Row(modifier = Modifier.weight(0.5f)) {
-            Column(
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier
-                    .background(Color(0xFFEADDFF))
-                    .padding(16.dp)
-                    .weight(0.5f)
-                    .fillMaxHeight()
-                    ) {
-                Text(text = q11,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(bottom = 16.dp)
-                )
-                Text(text = q12,
-                textAlign = TextAlign.Justify)
-            }
-            Column(verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier
-                    .background(Color(0xFFD0BCFF))
-                    .padding(16.dp)
-                    .weight(0.5f)
-                    .fillMaxHeight()) {
-                Text(text = q21,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(bottom = 16.dp))
-                Text(text = q22,
-                textAlign = TextAlign.Justify)
-            }
+    Column(modifier = modifier.fillMaxWidth()) {
+        Row(modifier = modifier.weight(1f)) {
+            ComposeCard(
+                title = q11,
+                description = q12,
+                backgroundColor = Color(0xFFEADDFF),
+                modifier = Modifier.weight(1f))
+            ComposeCard(
+                title = q21,
+                description = q22,
+                backgroundColor = Color(0xFFD0BCFF),
+                modifier = Modifier.weight(1f)
+            )
         }
 
-        Row(modifier = Modifier.weight(0.5f)) {
-            Column(verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier
-                    .background(Color(0xFFB69DF8))
-                    .padding(16.dp)
-                    .weight(0.5f)
-                    .fillMaxHeight()) {
-                Text(text = q31,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(bottom = 16.dp))
-                Text(text = q32,
-                    textAlign = TextAlign.Justify)
-            }
-            Column(verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier
-                    .background(Color(0xFFF6EDFF))
-                    .padding(16.dp)
-                    .weight(0.5f)
-                    .fillMaxHeight()) {
-                Text(text = q41,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(bottom = 16.dp))
-                Text(text = q42,
-                    textAlign = TextAlign.Justify)
-            }
+        Row(modifier = modifier.weight(1f)) {
+            ComposeCard(
+                title = q31,
+                description = q32,
+                backgroundColor = Color(0xFFB69DF8),
+                modifier = Modifier.weight(1f)
+            )
+            ComposeCard(
+                title = q41,
+                description = q42,
+                backgroundColor = Color(0xFFF6EDFF),
+                modifier = Modifier.weight(1f)
+            )
         }
     }
 }
